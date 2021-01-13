@@ -17,12 +17,6 @@ class NewsAdapter(val itemClickListener: NewsItemClicked) : RecyclerView.Adapter
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.news_list_item, parent, false)
 //        This is the current View which we will bind the data with
-        val viewHolder = NewsViewHolder(view)
-//        This is the view Holder object which we use to get the position of the view inside the adapter.
-        view.setOnClickListener{
-            itemClickListener.onItemClicked(newsList[viewHolder.adapterPosition])
-//            This is how we set onClickListener to the views inside Recycler view [We create an Interface and then we call the onItemClicked function present inside the Interface]
-        }
         return NewsViewHolder(view)
     }
 
@@ -37,6 +31,11 @@ class NewsAdapter(val itemClickListener: NewsItemClicked) : RecyclerView.Adapter
         holder.newsTitle.text = currentNewsItem.newsTitle
         holder.newsDescription.text = currentNewsItem.newsDescription
         holder.newsSource.text = currentNewsItem.newsSource
+//        Here we bind the data with the views
+        holder.itemView.setOnClickListener {
+            itemClickListener.onItemClicked(newsList[position])
+        }
+//        We set the onClickListener here insead of onCreateViewHolder because there we have trouble in getting the position of currentNewsItem to get the URL of the article 3
         Glide.with(holder.itemView.context).load(currentNewsItem.imageURL).into(holder.newsImage)
 //        This is how we map/bind the data inside the List to the Views
     }

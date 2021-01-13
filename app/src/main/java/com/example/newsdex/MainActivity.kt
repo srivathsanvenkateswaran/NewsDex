@@ -21,12 +21,13 @@ import org.json.JSONObject
 
      var newsList = mutableListOf<News>()
      private lateinit var adapter: NewsAdapter
+     lateinit var newsRecyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val newsRecyclerView = findViewById<RecyclerView>(R.id.recyclerView)
+        newsRecyclerView = findViewById<RecyclerView>(R.id.recyclerView)
         newsRecyclerView.layoutManager = LinearLayoutManager(this)
         fetchData()
         adapter = NewsAdapter(this)
