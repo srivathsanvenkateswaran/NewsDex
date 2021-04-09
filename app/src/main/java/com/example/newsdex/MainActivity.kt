@@ -36,7 +36,7 @@ import org.json.JSONObject
 
      fun fetchData() : MutableList<News>{
 //         Fetch the Data using volley library and add it to a List and return it.
-         val url: String = "http://api.mediastack.com/v1/news?access_key=64b51c5923f35952e60c70a18330c0e2"
+         val url: String = ""
 //         newsapi.org is replaced by media stack api because News API didn't support api calls other than localhost.
 //         media stack api also doesn't support  https and hence, I had to set up network_security_config.xml to allow http call
          val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, url, null,
